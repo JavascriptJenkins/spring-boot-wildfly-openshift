@@ -31,12 +31,11 @@
 			<scope>provided</scope>
 		</dependency>
 		
-		<!-- Kafka Java Client Library Code -->
-		<!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients -->
+		<!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka -->
 		<dependency>
 		    <groupId>org.apache.kafka</groupId>
-		    <artifactId>kafka-clients</artifactId>
-		    <version>0.9.0.0</version>
+		    <artifactId>kafka_2.12</artifactId>
+		    <version>1.0.0</version>
 		</dependency>
 	</dependencies>
 
