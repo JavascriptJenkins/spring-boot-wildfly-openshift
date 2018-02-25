@@ -1,13 +1,18 @@
 package bootwildfly.kafka;
 
 
+import kafka.admin.AdminClient;
 import kafka.admin.AdminUtils;
 import kafka.admin.RackAwareMode;
 import kafka.utils.ZKStringSerializer$;
 import kafka.utils.ZkUtils;
 import org.I0Itec.zkclient.ZkClient;
 import org.I0Itec.zkclient.ZkConnection;
+import org.apache.kafka.clients.admin.*;
 
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 
@@ -16,7 +21,7 @@ public class KafkaBroker {
 
     // String[] args
     public static void main() {
-        String zookeeperConnect = "localhost:9092";
+        String zookeeperConnect = "zookeeper:2181";
         int sessionTimeoutMs = 10 * 1000;
         int connectionTimeoutMs = 8 * 10000;
 

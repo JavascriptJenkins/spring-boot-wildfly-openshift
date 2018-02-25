@@ -29,52 +29,69 @@ public class KafkaProducerClass {
 
     public static void main(String... args) throws Exception {
         if (args.length == 0) {
-            runProducer(5);
+            runProducerSecond();
         } else {
-            runProducer(Integer.parseInt(args[0]));
+            runProducerSecond();
         }
+
     }
 
 
-    private static Producer<Long, String> createProducer() {
+//    private static Producer<Long, String> createProducer() {
+//        Properties props = new Properties();
+//        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVERS);
+//        props.put(ProducerConfig.CLIENT_ID_CONFIG, "KafkaExampleProducer");
+//        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, LongSerializer.class.getName());
+//        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
+//                StringSerializer.class.getName());
+//        return new KafkaProducer<>(props);
+//    }
+//
+//    static void runProducer(final int sendMessageCount) throws Exception {
+//        final Producer<Long, String> producer = createProducer();
+//        long time = System.currentTimeMillis();
+//
+//        try {
+//            for (long index = time; index < time + sendMessageCount; index++) {
+//
+//                // this is where the actual kafka messages are created
+//                final ProducerRecord<Long, String> record =
+//                        new ProducerRecord<>(TOPIC, index,
+//                                "Hello Mom " + index);
+//
+//                RecordMetadata metadata = producer.send(record).get();
+//
+//                long elapsedTime = System.currentTimeMillis() - time;
+//                System.out.printf("sent record(key=%s value=%s) " +
+//                                "meta(partition=%d, offset=%d) time=%d\n",
+//                        record.key(), record.value(), metadata.partition(),
+//                        metadata.offset(), elapsedTime);
+//
+//            }
+//        } finally {
+//            producer.flush();
+//            producer.close();
+//        }
+//
+//
+//    }
+
+    public static void runProducerSecond(){
         Properties props = new Properties();
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
-                BOOTSTRAP_SERVERS);
-        props.put(ProducerConfig.CLIENT_ID_CONFIG, "KafkaExampleProducer");
-        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
-                LongSerializer.class.getName());
-        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
-                StringSerializer.class.getName());
-        return new KafkaProducer<>(props);
-    }
+        props.put("bootstrap.servers", "localhost:9092");
+        props.put("acks", "all");
+        props.put("retries", 0);
+        props.put("batch.size", 16384);
+        props.put("linger.ms", 1);
+        props.put("buffer.memory", 33554432);
+        props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+        props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
-    static void runProducer(final int sendMessageCount) throws Exception {
-        final Producer<Long, String> producer = createProducer();
-        long time = System.currentTimeMillis();
+        Producer<String, String> producer = new KafkaProducer<>(props);
+        for(int i = 0; i < 100; i++)
+            producer.send(new ProducerRecord<String, String>("my-example-topic", Integer.toString(i), Integer.toString(i)));
 
-        try {
-            for (long index = time; index < time + sendMessageCount; index++) {
-
-                // this is where the actual kafka messages are created
-                final ProducerRecord<Long, String> record =
-                        new ProducerRecord<>(TOPIC, index,
-                                "Hello Mom " + index);
-
-                RecordMetadata metadata = producer.send(record).get();
-
-                long elapsedTime = System.currentTimeMillis() - time;
-                System.out.printf("sent record(key=%s value=%s) " +
-                                "meta(partition=%d, offset=%d) time=%d\n",
-                        record.key(), record.value(), metadata.partition(),
-                        metadata.offset(), elapsedTime);
-
-            }
-        } finally {
-            producer.flush();
-            producer.close();
-        }
-
-
+        producer.close();
     }
 
 
