@@ -2,11 +2,14 @@ package bootwildfly.kafka.Consumer;
 
 import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.common.errors.WakeupException;
+import org.springframework.stereotype.Component;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Properties;
 import java.util.Scanner;
 
+@Component
 public class KafkaConsumerClass {
 
     private final static String TOPIC = "my-example-topic";
@@ -51,7 +54,7 @@ public class KafkaConsumerClass {
             }
 
             consumerRecords.forEach(record -> {
-                System.out.printf("Consumer Record:(%d, %s, %d, %d)\n",
+                System.out.printf("Consumer Record:(%d)\n",
                         record.key(), record.value(),
                         record.partition(), record.offset());
             });
