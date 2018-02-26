@@ -31,7 +31,7 @@ public class ZookeeperCurator {
 // https://curator.apache.org/getting-started.html
     public static CuratorFramework initializeCuratorBuilder() throws Exception {
 
-        final String connectString = "zookeeper:2181"; // ex: zookeeper:2181
+        final String connectString = "zookeeper-server.kafka-project-1.svc:2181"; // ex: zookeeper:2181
 
         RetryPolicy retryPolicy = new ExponentialBackoffRetry(1000, 10);
         CuratorFramework client = CuratorFrameworkFactory.newClient(connectString, retryPolicy);
