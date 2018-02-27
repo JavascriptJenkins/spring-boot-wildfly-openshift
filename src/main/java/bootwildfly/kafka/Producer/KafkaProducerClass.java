@@ -78,7 +78,7 @@ public class KafkaProducerClass {
 
     public static void runProducerSecond(){
         Properties props = new Properties();
-        props.put("bootstrap.servers", "k-server.kafka-project-1.svc:9092");
+        props.put("bootstrap.servers", "k-server:9092");
         props.put("acks", "all");
         props.put("retries", 0);
         props.put("batch.size", 16384);
