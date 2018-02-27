@@ -27,8 +27,15 @@ public class ZookeeperCurator {
 
     }
 
-
-// https://curator.apache.org/getting-started.html
+    /* This method will successfully initiate a Zookeeper curator client
+    *
+    * Apace Curator is designed to make the management of multiple zookeeper instances easier.
+    * You can manage Znodes in your zookeeper cluster.
+    *
+    * */
+    // https://curator.apache.org/getting-started.html
+    // https://blog.cloudera.com/blog/2013/05/zookeeper-made-simpler/
+    // https://medium.com/@Imesha94/apache-curator-in-5-minutes-8a2f91aff06f
     public static CuratorFramework initializeCuratorBuilder() throws Exception {
 
         final String connectString = "zookeeper-server.kafka-project-1.svc:2181"; // ex: zookeeper:2181

@@ -24,7 +24,7 @@ public class KafkaProducerClass {
 
 
     private final static String TOPIC = "my-example-topic";
-    private final static String BOOTSTRAP_SERVERS = "localhost:9092";
+    private final static String BOOTSTRAP_SERVERS = "k-server:9092";
 
 
     public static void main(String... args) throws Exception {
@@ -78,7 +78,7 @@ public class KafkaProducerClass {
 
     public static void runProducerSecond(){
         Properties props = new Properties();
-        props.put("bootstrap.servers", "localhost:9092");
+        props.put("bootstrap.servers", "k-server:9092");
         props.put("acks", "all");
         props.put("retries", 0);
         props.put("batch.size", 16384);
