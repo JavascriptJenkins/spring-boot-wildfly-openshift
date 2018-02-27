@@ -7,7 +7,9 @@
 	<artifactId>bootwildfly</artifactId>
 	<version>1.0</version>
 
-	<packaging>war</packaging>
+	<!--<packaging>war</packaging>-->
+
+	<!-- This parent pom contains the execution configurations for the repackage goal. -->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -68,20 +70,21 @@
 
 	<build>
 		<plugins>
+			<!-- This is what makes spring boot work -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.3</version>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                    <outputDirectory>target</outputDirectory>
-              		  <warName>ROOT</warName>
-                </configuration>
-            </plugin>
+			<!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-war-plugin</artifactId>-->
+                <!--<version>2.3</version>-->
+                <!--<configuration>-->
+                    <!--<failOnMissingWebXml>false</failOnMissingWebXml>-->
+                    <!--<outputDirectory>target</outputDirectory>-->
+              		  <!--<warName>ROOT</warName>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
 
 			<!--<plugin>-->
 				<!--<artifactId>exec-maven-plugin</artifactId>-->
